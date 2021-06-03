@@ -1,22 +1,20 @@
-import java.sql.*;
-import java.util.Properties;
+import database.ConnectionSQL;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Initilize project");
-        String url = "jdbc:postgresql://localhost:5432/beware_software";
-        Properties props = new Properties();
-        props.setProperty("user", "postgres");
-        props.setProperty("password", "216042021");
-        try {
-            Connection conn = DriverManager.getConnection(url, props);
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from possible_victim");
-            while (resultSet.next()) {
-                System.out.printf("%-30.30s  %-30.30s%n", resultSet.getString("nickname"), resultSet.getString("cix_victim"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        System.out.println("Hello TECNOWEB! 😂");
+        Dotenv dotenv = Dotenv.configure()
+                .directory("C:\\Users\\Ruddy\\IdeaProjects\\socket-database-postgresql\\src\\main\\java")
+                .load();
+        String host = dotenv.get("DB_HOST");
+        String port = dotenv.get("DB_PORT");
+        String database = dotenv.get("DB_DATABASE");
+        String username = dotenv.get("DB_USERNAME");
+        String password = dotenv.get("DB_PASSWD");
+
+        ConnectionSQL connectionDB = new ConnectionSQL(host, Integer.valueOf(port), database, username, password);
+        connectionDB.executeQuerySQL("");
     }
 }

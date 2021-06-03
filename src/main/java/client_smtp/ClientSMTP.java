@@ -142,7 +142,14 @@ public class ClientSMTP {
         }
     }
 
-
+    /**
+     * Get Message multiline
+     *
+     * @param in bufferReader
+     * @return String meesage
+     * @throws IOException
+     * @author Ing. Evans Valcazar {evansvb@gmail.com}
+     */
     private String getMultiline(BufferedReader in) throws IOException {
         String lines = "";
         while (true) {

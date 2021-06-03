@@ -10,8 +10,7 @@ public class ConnectionSQL {
     /**
      * Attributes
      */
-    private String ConnectionURL;
-    private Properties properties;
+    private String connectionURL;
     private Connection connectionDB;
 
     /**
@@ -21,16 +20,12 @@ public class ConnectionSQL {
      * @param passwd:   password user database
      * @constructor Initialize the instance connection to database
      */
-    public ConnectionSQL(String host, int port, String username, String passwd) {
-        // url jdbc drive connection
-        this.ConnectionURL = "jdbc:postgresql://" + host + ":" + port + "/" + username;
-        // save user session in properties
-        this.properties = new Properties();
-        this.properties.setProperty("user", username);
-        this.properties.setProperty("password", passwd);
+    public ConnectionSQL(String host, int port, String database, String username, String passwd) {
+        // url JDBC drive connection
+        this.connectionURL = "jdbc:postgresql://" + host + ":" + port + "/" + database;
         // establishing the connection to the database
         try {
-            this.connectionDB = DriverManager.getConnection(this.ConnectionURL, this.properties);
+            this.connectionDB = DriverManager.getConnection(this.connectionURL, username, passwd);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.print("Error in establishing session PSQL");
@@ -38,19 +33,11 @@ public class ConnectionSQL {
     }
 
     public String getConnectionURL() {
-        return ConnectionURL;
+        return connectionURL;
     }
 
     public void setConnectionURL(String connectionURL) {
-        ConnectionURL = connectionURL;
-    }
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
+        this.connectionURL = connectionURL;
     }
 
     public Connection getConnectionDB() {

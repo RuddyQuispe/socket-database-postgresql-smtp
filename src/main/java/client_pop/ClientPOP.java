@@ -1,6 +1,9 @@
 package client_pop;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**
@@ -18,20 +21,19 @@ public class ClientPOP {
     private DataOutputStream output;
 
     /**
-     * @param host        host server
-     * @param port        port enable
-     * @param userAccount username email account to see
+     * @param host host server
+     * @param port port enable
      * @constructor Initialize service POP and socket open
      */
-    public ClientPOP(String host, int port, String userAccount) {
+    public ClientPOP(String host, int port) {
         this.host = host;
         this.port = port;
-        this.userAccount = userAccount;
         try {
             // open socket and connect POP service
             this.socketClient = new Socket(this.host, this.port);
             this.input = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
             this.output = new DataOutputStream(this.socketClient.getOutputStream());
+            System.out.println("SERVER: " + this.input.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,13 +42,14 @@ public class ClientPOP {
     /**
      * Connect POP services email and verify session login to email
      *
-     * @param password user account password
+     * @param userAccount username email account to see
+     * @param password    user account password
      * @return true if was started session or not if has a problem
      */
-    public boolean login(String password) {
-        if (this.socketClient != null && this.input != null && this.output != null) {
+    public boolean login(String userAccount, String password) {
+        if (this.socketClient != null && this.input != null && this.output != null && userAccount != "") {
             try {
-                System.out.println("SERVER: " + this.input.readLine());
+                this.userAccount = userAccount;
                 // send username for session
                 String command = "USER " + this.userAccount + "\r\n";
                 System.out.println("CLIENT: " + command);
@@ -156,5 +159,15 @@ public class ClientPOP {
             lines = lines + "\n" + line;
         }
         return lines;
+    }
+
+    public static void main(String[] args) {
+        ClientPOP popClient = new ClientPOP("mail.tecnoweb.org.bo", 110);
+        popClient.login("grupo01sa", "grup001grup001");
+        String getListEmails = popClient.getListEmail();
+        System.out.println(getListEmails);
+        String email = popClient.getEmailIDReceive(47);
+        System.out.println(email);
+        popClient.closeSession();
     }
 }

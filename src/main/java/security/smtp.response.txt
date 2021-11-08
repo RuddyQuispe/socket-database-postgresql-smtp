@@ -1,0 +1,28 @@
+SERVER: 220 dns.tecnoweb.org.bo ESMTP ; Sat, 6 Nov 2021 20:28:43 -0400
+CLIENT: EHLO mail.tecnoweb.org.bo
+
+SERVER:
+250-dns.tecnoweb.org.bo Hello [190.129.238.251], pleased to meet you
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-8BITMIME
+250-SIZE
+250-DSN
+250-ETRN
+250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5
+250-STARTTLS
+250-DELIVERBY
+250 HELP
+CLIENT: MAIL FROM: ruddyq18@gmail.com
+
+SERVER: 250 2.1.0 ruddyq18@gmail.com... Sender ok
+CLIENT: RCPT TO: grupo01sa@tecnoweb.org.bo
+
+SERVER: 250 2.1.5 grupo01sa@tecnoweb.org.bo... Recipient ok
+CLIENT: DATA
+
+SERVER:
+354 Enter mail, end with "." on a line by itself
+CLIENT: Subject:Test send Email from warnes
+I'm fine
+.

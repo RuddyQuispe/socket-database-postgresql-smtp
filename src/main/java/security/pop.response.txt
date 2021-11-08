@@ -1,0 +1,80 @@
+SERVER: +OK Dovecot ready.
+CLIENT: USER grupo01sa
+
+SERVER: +OK
+CLIENT: PASS grup001grup001
+
+SERVER: +OK Logged in.
+CLIENT: LIST
+
+SERVER:
++OK 47 messages:
+1 411
+2 411
+3 435
+4 386
+5 434
+6 434
+7 425
+8 482
+9 482
+10 482
+11 547
+12 547
+13 427
+14 427
+15 428
+16 428
+17 428
+18 428
+19 428
+20 428
+21 428
+22 428
+23 428
+24 428
+25 428
+26 428
+27 428
+28 428
+29 428
+30 428
+31 428
+32 428
+33 428
+34 428
+35 428
+36 428
+37 428
+38 428
+39 428
+40 428
+41 407
+42 422
+43 379
+44 389
+45 389
+46 402
+47 394
+
+CLIENT: RETR 47
+
+SERVER:
++OK 394 octets
+Return-Path: <hola@gmail.com>
+Received: from mail.tecnoweb.org.bo ([190.129.238.251])
+	by dns.tecnoweb.org.bo (8.16.1/8.15.2) with ESMTP id 1A71S15i209110
+	for grupo01sa@tecnoweb.org.bo; Sat, 6 Nov 2021 21:28:03 -0400
+Date: Sat, 6 Nov 2021 21:28:01 -0400
+From: hola@gmail.com
+Message-Id: <202111070128.1A71S15i209110@dns.tecnoweb.org.bo>
+Subject:Test send Email from warnes
+
+I'm fine
+
+CLIENT: QUIT
+
+SERVER: +OK Logging out.
+
+
+Process finished with exit code 0

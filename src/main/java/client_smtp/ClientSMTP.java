@@ -108,12 +108,12 @@ public class ClientSMTP {
                 System.out.println("SERVER: " + this.input.readLine());
                 return true;
             } catch (IOException e) {
-                System.out.println("ERROR: El servidor no esta respondiendo...");
+                System.out.println("ERROR: The server is not responding...");
                 e.printStackTrace();
                 return false;
             }
         } else {
-            System.out.println("la conexion no esta establecida correctamente");
+            System.out.println("the connection is not established correctly");
             return false;
         }
     }
@@ -137,7 +137,7 @@ public class ClientSMTP {
             return true;
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("ERROR, problemas al cerrar el servicio SMTP");
+            System.out.println("ERROR. problems shutting down the SMTP service.");
             return false;
         }
     }
@@ -169,4 +169,9 @@ public class ClientSMTP {
         return lines;
     }
 
+    public static void main(String[] args){
+        ClientSMTP clientSMTP = new ClientSMTP("mail.tecnoweb.org.bo", 25, "hola@gmail.com");
+        clientSMTP.sendMail("Test send Email from warnes", "I'm fine", "grupo01sa@tecnoweb.org.bo");
+        clientSMTP.closeServiceSMTP();
+    }
 }
